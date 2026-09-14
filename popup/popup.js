@@ -15,6 +15,7 @@ const ui = {
   intervalInput: document.querySelector("#intervalMinutes"),
   waitInput: document.querySelector("#pageWaitSeconds"),
   concurrencyInput: document.querySelector("#maxConcurrentTabs"),
+  keepAliveUrlMode: document.querySelector("#keepAliveUrlMode"),
   blacklist: document.querySelector("#blacklist"),
   whitelistEnabled: document.querySelector("#whitelistEnabled"),
   whitelist: document.querySelector("#whitelist"),
@@ -107,6 +108,7 @@ async function queueAutoSave() {
       intervalMinutes: Number(ui.intervalInput.value),
       pageWaitSeconds: Number(ui.waitInput.value),
       maxConcurrentTabs: Number(ui.concurrencyInput.value),
+      keepAliveUrlMode: ui.keepAliveUrlMode.value,
       blacklist: ui.blacklist.value,
       whitelistEnabled: ui.whitelistEnabled.checked,
       whitelist: ui.whitelist.value
@@ -153,6 +155,7 @@ function render({ settings, runtime, sites, logs }) {
     ui.intervalInput.value = settings.intervalMinutes;
     ui.waitInput.value = settings.pageWaitSeconds;
     ui.concurrencyInput.value = settings.maxConcurrentTabs;
+    ui.keepAliveUrlMode.value = settings.keepAliveUrlMode;
     ui.blacklist.value = domainListToText(settings.blacklist);
     ui.whitelistEnabled.checked = settings.whitelistEnabled;
     ui.whitelist.value = domainListToText(settings.whitelist);

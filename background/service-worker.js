@@ -194,14 +194,31 @@ async function scanSites(settings = null) {
       if (matchesDomain(parsed.hostname, config.blacklist)) continue;
       if (config.whitelistEnabled && !matchesDomain(parsed.hostname, config.whitelist)) continue;
       if (!sites.has(parsed.hostname)) {
-        sites.set(parsed.hostname, { domain: parsed.hostname, url: parsed.origin });
+        sites.set(parsed.hostname, {
+          domain: parsed.hostname,
+          hostnameUrl: parsed.origin,
+          openUrls: []
+        });
       }
+      const site = sites.get(parsed.hostname);
+      if (!site.openUrls.includes(parsed.href)) site.openUrls.push(parsed.href);
     } catch {
       // 非法 URL 不应阻断其余标签页的扫描。
     }
   }
 
-  return [...sites.values()].sort((a, b) => a.domain.localeCompare(b.domain));
+  return [...sites.values()]
+    .map((site) => ({
+      domain: site.domain,
+      url: config.keepAliveUrlMode === "randomOpenUrl"
+        ? pickRandomItem(site.openUrls)
+        : site.hostnameUrl
+    }))
+    .sort((a, b) => a.domain.localeCompare(b.domain));
+}
+
+function pickRandomItem(items) {
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 async function fillWorkerSlots(state) {

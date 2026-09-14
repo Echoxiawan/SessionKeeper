@@ -44,6 +44,7 @@
           <label class="field"><span>执行间隔</span><div><input id="intervalMinutes" data-autosave type="number" min="1" max="1440" required><i>分钟</i></div><small>允许 1–1440 分钟</small></label>
           <label class="field"><span>页面加载后等待</span><div><input id="pageWaitSeconds" data-autosave type="number" min="0" max="300" required><i>秒</i></div><small>等待网站脚本完成会话刷新</small></label>
           <label class="field"><span>并行后台页面</span><div><input id="maxConcurrentTabs" data-autosave type="number" min="1" max="10" required><i>个 Tab</i></div><small>允许同时打开 1–10 个，默认 3 个</small></label>
+          <label class="field"><span>保活地址</span><select id="keepAliveUrlMode" data-autosave><option value="hostname">打开主机根地址（默认）</option><option value="randomOpenUrl">随机一个同主机名的已打开地址</option></select><small>随机模式严格按完整 hostname 分组，不混用其他子域名</small></label>
         </section>
         <section class="panel form-panel">
           <div class="title"><h2>域名规则</h2><span>FILTER</span></div>

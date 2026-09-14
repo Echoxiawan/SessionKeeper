@@ -42,7 +42,7 @@ button { font:inherit; }
 .autosave-status.error { color:#ffaaa2; } .autosave-status.error i { background:var(--danger); }
 .form-panel { padding-bottom:16px; }
 .field { display:block; margin-top:13px; } .field>span { display:block; margin-bottom:6px; color:var(--ink); font-size:11px; font-weight:700; }
-.field>div { position:relative; } input[type="number"],textarea { width:100%; border:1px solid var(--line); border-radius:0; outline:0; background:#101512; color:var(--ink); font:12px "Avenir Next",sans-serif; } input[type="number"] { height:38px; padding:0 62px 0 10px; } textarea { min-height:72px; padding:10px; resize:vertical; line-height:1.45; } input:focus,textarea:focus { border-color:#7ca52d; box-shadow:0 0 0 2px rgba(183,243,74,.12); }
+.field>div { position:relative; } input[type="number"],select,textarea { width:100%; border:1px solid var(--line); border-radius:0; outline:0; background:#101512; color:var(--ink); font:12px "Avenir Next",sans-serif; } input[type="number"],select { height:38px; } input[type="number"] { padding:0 62px 0 10px; } select { padding:0 10px; } textarea { min-height:72px; padding:10px; resize:vertical; line-height:1.45; } input:focus,select:focus,textarea:focus { border-color:#7ca52d; box-shadow:0 0 0 2px rgba(183,243,74,.12); }
 .field i { position:absolute; top:11px; right:11px; color:var(--muted); font-size:10px; font-style:normal; } .field small { display:block; margin-top:5px; color:var(--muted); font-size:10px; }
 .check-row { display:flex; align-items:center; gap:8px; margin-top:15px; font-size:11px; cursor:pointer; } .check-row input { width:15px; height:15px; margin:0; accent-color:var(--acid); }
 .whitelist-field { transition:opacity .15s; } .whitelist-field.disabled { opacity:.4; }

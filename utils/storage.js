@@ -9,6 +9,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
   intervalMinutes: 10,
   pageWaitSeconds: 10,
   maxConcurrentTabs: 3,
+  keepAliveUrlMode: "hostname",
   blacklist: [],
   whitelistEnabled: false,
   whitelist: []
@@ -33,6 +34,7 @@ export function sanitizeSettings(input = {}) {
     intervalMinutes: clampInteger(input.intervalMinutes, 1, 1440, DEFAULT_SETTINGS.intervalMinutes),
     pageWaitSeconds: clampInteger(input.pageWaitSeconds, 0, 300, DEFAULT_SETTINGS.pageWaitSeconds),
     maxConcurrentTabs: clampInteger(input.maxConcurrentTabs, 1, 10, DEFAULT_SETTINGS.maxConcurrentTabs),
+    keepAliveUrlMode: input.keepAliveUrlMode === "randomOpenUrl" ? "randomOpenUrl" : DEFAULT_SETTINGS.keepAliveUrlMode,
     blacklist: normalizeDomainList(input.blacklist),
     whitelistEnabled: input.whitelistEnabled === true,
     whitelist: normalizeDomainList(input.whitelist)
