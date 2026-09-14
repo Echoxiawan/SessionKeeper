@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "SessionKeeper",
+  "version": "1.0.0",
+  "description": "通过后台访问已打开的网站，帮助维持现有登录会话。",
+  "permissions": ["alarms", "storage", "tabs", "webNavigation"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "SessionKeeper",
+    "default_popup": "popup/popup.html"
+  }
+}

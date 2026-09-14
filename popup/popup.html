@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SessionKeeper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div><p class="eyebrow">SESSION CONTROL</p><h1>SessionKeeper</h1></div>
+      <span id="statusBadge" class="status"><i></i>加载中</span>
+    </header>
+    <nav class="tabs" aria-label="插件功能">
+      <button class="tab active" type="button" data-view="control">控制台</button>
+      <button class="tab" type="button" data-view="settings">设置</button>
+      <button class="tab" type="button" data-view="logs">日志 <span id="logCount">0</span></button>
+    </nav>
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+    <section class="view active" data-view-panel="control">
+      <section class="power-panel">
+        <div><span>自动保活</span><strong id="powerLabel">读取中</strong></div>
+        <button id="toggleEnabled" class="power-button" type="button" role="switch" aria-checked="false" aria-label="启用或停用自动保活"><span></span></button>
+      </section>
+      <section class="metrics" aria-label="运行概况">
+        <div><span>监控站点</span><strong id="siteCount">—</strong></div>
+        <div><span>执行间隔</span><strong id="interval">—</strong></div>
+        <div><span>进行中</span><strong id="activeCount">—</strong></div>
+      </section>
+      <section class="panel">
+        <div class="title"><h2>当前监控网站</h2><span>ORIGINS</span></div>
+        <ul id="siteList" class="sites"><li class="empty">正在扫描…</li></ul>
+      </section>
+      <button id="runNow" class="primary" type="button">立即保活</button>
+    </section>
+
+    <section class="view" data-view-panel="settings">
+      <form id="settingsForm">
+        <div id="autoSaveStatus" class="autosave-status" role="status" aria-live="polite"><i></i><span>修改后自动保存</span></div>
+        <section class="panel form-panel">
+          <div class="title"><h2>任务节奏</h2><span>SCHEDULE</span></div>
+          <label class="field"><span>执行间隔</span><div><input id="intervalMinutes" data-autosave type="number" min="1" max="1440" required><i>分钟</i></div><small>允许 1–1440 分钟</small></label>
+          <label class="field"><span>页面加载后等待</span><div><input id="pageWaitSeconds" data-autosave type="number" min="0" max="300" required><i>秒</i></div><small>等待网站脚本完成会话刷新</small></label>
+          <label class="field"><span>并行后台页面</span><div><input id="maxConcurrentTabs" data-autosave type="number" min="1" max="10" required><i>个 Tab</i></div><small>允许同时打开 1–10 个，默认 3 个</small></label>
+        </section>
+        <section class="panel form-panel">
+          <div class="title"><h2>域名规则</h2><span>FILTER</span></div>
+          <label class="field"><span>黑名单</span><textarea id="blacklist" data-autosave rows="4" placeholder="google.com&#10;analytics.example.com"></textarea><small>每行一个域名，同时匹配其子域名</small></label>
+          <label class="check-row"><input id="whitelistEnabled" data-autosave type="checkbox"><span>启用白名单模式</span></label>
+          <label class="field whitelist-field"><span>白名单</span><textarea id="whitelist" data-autosave rows="4" placeholder="gitlab.example.com&#10;jira.example.com"></textarea><small>开启后只保活这些域名</small></label>
+        </section>
+      </form>
+    </section>
+
+    <section class="view" data-view-panel="logs">
+      <section class="log-summary"><div><span>总记录</span><strong id="totalLogs">0</strong></div><div><span>成功率</span><strong id="successRate">—</strong></div></section>
+      <div id="allLogs" class="all-logs"><p class="empty">暂无运行日志</p></div>
+    </section>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
